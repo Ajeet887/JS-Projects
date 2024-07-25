@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .header{
+        height: 100px;
+        width: 100%;
+        background-color: rgb(156, 164, 171);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .button a{
+        text-decoration: none;
+        color: black;
+    }
+    .button{
+    width: 142px;
+    font-size: 15px;
+    font-weight: 500;
+    height: 37px;
+    padding: 3px;
+    margin: 0 10px;
+    border-radius: 5px;
+    text-align: center;
+    border: 1.7px solid black;
+}
+.button:hover{
+    background-color: silver;
+}
+form{
+    height: 100vh;
+    background-color: grey;
+}
+.container{
+    margin: 50px;
+    text-align: center;
+}
+.container p{
+    margin: 30px;
+    font-size: 25px;
+    height: 70px;
+    width: 500px;
+}
+.container p input{ 
+    padding: 8px;
+    border: none;
+}
+.container button{
+    height: 40px;
+    font-size: 20px;
+    width: 150px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+}
+.results{
+    height: 30px;
+    margin: 10px;
+    width: 100%;
+    font-size: 20px;
+    color: white;
+    text-align: center;
+}
+</style>
+<body>
+    <header>
+        <div class="header">
+            <button class="button btn1"><a href="">Home</a></button>
+            <button class="button btn2"><a href="https://www.youtube.com">Youtube Channel</a></button>
+        </div>
+    </header>
+    <form>
+    <div class="container">
+        <h1>BMI Calculator</h1>
+        <p><label for="">Height in CM : </label><input type="text" id="height" ></p>
+        <p><label for="">Weight in KG : </label><input type="text" id="weight"></p>
+        <button>Calculate</button>
+        <div class="results"></div>
+        <h3>BMI Weight Guide</h3>
+        <p>Under Weight = less than 18.6</p>
+        <p>Normal Range = 18.6 and 24.9</p>
+        <p>Over Weight = Greater than 24.9</p>
+    </div>
+</form>
+<script>
+    const form=document.querySelector('form');
+
+    form.addEventListener('submit',function (e){
+        e.preventDefault();
+
+        
+        const height=parseInt(document.querySelector('#height').value);
+        const weight=parseInt(document.querySelector('#weight').value);
+        const result=document.querySelector('.results');
+
+        if(height==='' || height < 0 || isNaN(height)){
+            result.innerHTML=`Please give a valid height ${height}`; 
+        }
+        else if(weight==='' || weight < 0 || isNaN(weight)){
+            result.innerHTML=`Please give a valid weight ${weight}`; 
+        }
+        else {
+            const bmi = (weight / ((height*height)/10000)).toFixed(2);
+            result.innerHTML= `${bmi}`;
+        }
+    });
+</script>
+</body>
+</html>

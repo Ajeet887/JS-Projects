@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count Down</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .main {
+        width: 100%;
+        height: 100vh;
+        background-image: url(background.jpg);
+        background-position: center;
+        color: white;
+        background-size: cover;
+        font-family: "Noto Sans", sans-serif;
+      }
+      .overlay {
+        height: 100%;
+        width: 100%;
+        background-color: rgb(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        
+      }
+      .title{
+        margin-top: 10px;
+        text-align: center;
+        font-size: 2.5rem;
+      }
+      .col{
+        margin-top: 10px;
+        width: 1000px;
+        display: flex;
+        justify-content: center;
+        color: white;
+      }
+
+      .col div{
+        width: 260px;
+        text-align: center;
+      }
+      input{
+        background-color: rgb(255, 255, 255,0.9);
+        width: 50%;
+        height: 50px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="main">
+      <div class="overlay">
+        <div class="title">We are coming soon</div>
+        <div class="title" id="name-tit">25 June 2024 10:00 PM</div>
+        <div class="col">
+            <div class="input">
+                <input type=""readonly value="0"><br>
+                <label for="">Days</label>
+            </div>
+            <div class="input">
+                <input type="" readonly value="0"><br>
+                <label for="">Hours</label>
+            </div>
+            <div class="input">
+                <input type=""readonly value="0"><br>
+                <label for="">Minutes</label>
+            </div>
+            <div class="input">
+                <input type=""readonly value="0"><br>
+                <label for="">Seconds</label>
+            </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        const enddate="25 june 2024 11:40 PM";
+        document.getElementById("name-tit").innerText=enddate;
+        const inputs=document.querySelectorAll("input");
+
+        function clock(){
+            const end=new Date(enddate);
+            const now= new Date();
+            const diff=(end-now)/1000;
+            if(diff<0)return ;
+            inputs[0].value=Math.floor(diff/3600/24);
+            inputs[1].value=Math.floor((diff/3600)%24);
+            inputs[2].value=Math.floor((diff/60)%60);
+            inputs[3].value=Math.floor((diff)%60);
+                
+        }
+        clock();
+
+        setInterval(()=>{
+            clock();
+        },1000);
+    </script>
+  </body>
+</html>
